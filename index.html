@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      .error {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username"><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br><br>
+      <label for="position">Position:</label>
+      <select id="position" name="position">
+        <option value="engineer">Engineer</option>
+        <option value="doctor">Doctor</option>
+        <option value="mechanic">Mechanic</option>
+      </select><br><br>
+      <label>Employment type:</label><br>
+      <input type="radio" id="part-time" name="employment-type" value="part-time">
+      <label for="part-time">Part-time</label><br>
+      <input type="radio" id="full-time" name="employment-type" value="full-time">
+      <label for="full-time">Full-time</label><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"><br><br>
+      <button type="button" onclick="login()">Login</button>
+    </form>
+    
+    <script>
+      function login() {
+        var username = document.getElementById("username");
+        var email = document.getElementById("email");
+        var position = document.getElementById("position").value;
+        var employmentType = document.querySelector('input[name="employment-type"]:checked').value;
+        var password = document.getElementById("password").value;
+        
+        if (username.value.length < 6 || username.value.length > 10) {
+          alert("Username must be between 6 and 10 characters.");
+          username.classList.add("error");
+          return;
+        } else {
+          username.classList.remove("error");
+        }
+        
+        if (email.value.indexOf('@') == -1) {
+          alert("Email address is invalid.");
+          email.classList.add("error");
+          return;
+        } else {
+          email.classList.remove("error");
+        }
+        
+        if (position != "engineer" && position != "doctor" && position != "mechanic") {
+          alert("Position is invalid.");
+          return;
+        }
+        
+        if (employmentType != "part-time" && employmentType != "full-time") {
+          alert("Employment type is invalid.");
+          return;
+        }
+        
+        if (username.value == "example" && password == "password123") {
+          alert("Login successful!");
+        } else {
+          alert("Incorrect username or password. Please try again.");
+        }
+      }
+    </script>
+  </body>
+</html>
